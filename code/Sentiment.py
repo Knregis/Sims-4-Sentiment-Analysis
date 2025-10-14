@@ -1,9 +1,7 @@
-import requests 
 import pandas as pd
 from Transform import df_clean
-import Api_calls
-import config
-import nltk
+from Transform import filedate
+import time
 from nltk.sentiment import SentimentIntensityAnalyzer
 from tqdm.notebook import tqdm
 
@@ -37,12 +35,13 @@ for index, row in Sims4_df.iterrows():
 
     })
 
-
 # save to cache, return dataframe and save it to a csv file
 sentiment_df = pd.DataFrame(sentiments)
-s_file = sentiment_df.to_csv('Sims_sentiment.csv', index=False)
+s_file = sentiment_df.to_csv('excel_files/Sims_sentiment.csv', index=False)
 
 # Concat the sims_new file and the sims sentiment.csv file
-concating = pd.concat(map(pd.read_csv, ['excel_files/Sims4_new.csv', 'excel_files/Sims_sentiment.csv']), axis=1)
-concating.to_csv('merged_sentiment.csv', index=False)
+concating = pd.concat(map(pd.read_csv, [filedate, 'excel_files/Sims_sentiment.csv']), axis=1)
+
+file = time.strftime("excel_files/Sims4_merged_%Y-%m-%d.csv")
+concating.to_csv(file, index=False)
 

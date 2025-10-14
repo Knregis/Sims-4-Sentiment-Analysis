@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
-from Api_calls import df
-import datetime
+from Api_calls import filename
+import time
 import re
 
 # Finally I want to save the data to a csv file
@@ -40,11 +40,12 @@ def clean_data(df):
 
 #----------------------------------------------
 # combine both dataframes into one
-df = pd.read_csv("excel_files/Sims4_data.csv")
+df = pd.read_csv(filename)
 
 df_clean = clean_data(df)
 
-df_clean.to_csv("Sims4_new.csv", index=False)
+filedate = time.strftime("excel_files/Sims4_new_%Y-%m-%d.csv")
+df_clean.to_csv(filedate, index=False)
 
 #st.dataframe(df_clean)
 
