@@ -1,3 +1,4 @@
+from pathlib import  Path
 import pandas as pd
 import streamlit as st
 from Api_calls import filename
@@ -40,11 +41,16 @@ def clean_data(df):
 
 #----------------------------------------------
 # combine both dataframes into one
+
+cwd = Path(__file__).parent
+script_dir = cwd.parent.parent.resolve() / "Sims4_Sentiment-Analysis"/ "excel_files"
+
+
 df = pd.read_csv(filename)
 
 df_clean = clean_data(df)
 
-filedate = time.strftime("excel_files/Sims4_new_%Y-%m-%d.csv")
+filedate = (script_dir/time.strftime("Sims4_new_%Y-%m-%d.csv"))
 df_clean.to_csv(filedate, index=False)
 
 #st.dataframe(df_clean)

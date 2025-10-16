@@ -1,3 +1,4 @@
+from pathlib import  Path
 import pandas as pd
 import streamlit as st
 import requests
@@ -132,7 +133,10 @@ df = pd.DataFrame([{
 
 #st.title("Sims 4 Subreddit Data")
 
-filename = time.strftime("excel_files/Sims4_data_%Y-%m-%d.csv")
+cwd = Path(__file__).parent
+script_dir = cwd.parent.parent.resolve() / "Sims4_Sentiment-Analysis"/ "excel_files"
+
+filename = (script_dir/time.strftime("Sims4_data_%Y-%m-%d.csv"))
 df = df.to_csv(filename, index=False)
 
 

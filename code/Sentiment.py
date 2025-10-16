@@ -1,3 +1,4 @@
+from pathlib import  Path
 import pandas as pd
 from Transform import df_clean
 from Transform import filedate
@@ -36,12 +37,16 @@ for index, row in Sims4_df.iterrows():
     })
 
 # save to cache, return dataframe and save it to a csv file
+
+cwd = Path(__file__).parent
+script_dir = cwd.parent.parent.resolve() / "Sims4_Sentiment-Analysis"/"excel_files"
+
 sentiment_df = pd.DataFrame(sentiments)
-s_file = sentiment_df.to_csv('excel_files/Sims_sentiment.csv', index=False)
+s_file = sentiment_df.to_csv(script_dir/"Sims_sentiment.csv", index=False)
 
 # Concat the sims_new file and the sims sentiment.csv file
-concating = pd.concat(map(pd.read_csv, [filedate, 'excel_files/Sims_sentiment.csv']), axis=1)
+concating = pd.concat(map(pd.read_csv, [filedate, script_dir/"Sims_sentiment.csv"]), axis=1)
 
-file = time.strftime("excel_files/Sims4_merged_%Y-%m-%d.csv")
+file = (script_dir/time.strftime("Sims4_merged_%Y-%m-%d.csv"))
 concating.to_csv(file, index=False)
 

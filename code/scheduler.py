@@ -6,9 +6,9 @@ from time import sleep
 
 def csv_files():
 
-    Api_calls.run()
-    Sentiment.run()
-    Transform.run()
+    # Api_calls.run()
+    Sentiment
+    # Transform.run()
 
 
 
