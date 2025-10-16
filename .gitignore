@@ -9,7 +9,8 @@ __pycache__/
 # Configuration files
 config.py
 
-
+# batch file
+code/pull.bat
 
 # Distribution / packaging
 .Python
@@ -30,7 +31,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-.bat
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
